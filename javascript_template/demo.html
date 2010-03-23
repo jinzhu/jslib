@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title> JavaScript Template </title>
+  </head>
+
+  <script src="./render.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    global_variable = 'glob_var';
+
+    function function_return_value() {
+      return 'function'
+    };
+  </script>
+
+  <textarea id='template'>
+
+    {{ for(var i = 0 ;i < 9 ; i++){ }}
+      <div>demo!</div>
+      <!-- This is a comment -->
+      {{= argument }}
+      {{= global_variable }}
+      {{= function_return_value(); }}
+    {{ } }}
+
+  </textarea>
+
+  <script type="text/javascript" charset="utf-8">
+    // document.getElementsByTagName('body')[0].innerHTML = render('template',{argument : 'argu'});
+    /* render('template',function(data){ document.getElementsByTagName('body')[0].innerHTML = data }); */
+    /* render('template',{argument : 'argu'},function(data){ document.getElementsByTagName('body')[0].innerHTML = data }); */
+    /* document.getElementsByTagName('body')[0].innerHTML = render('template'); */
+  </script>
+</html>
