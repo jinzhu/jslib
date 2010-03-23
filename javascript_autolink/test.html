@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <script src="./assets/jquery-1.3.2.js"></script>
+    <script src="./assets/testrunner.js"></script>
+    <script src="./autolink.js"></script>
+    <link rel="stylesheet" href="./assets/testsuite.css" type="text/css" media="screen" />
+  </head>
+
+  <body>
+
+    <h1>Javascript Autolink test -- ZhangJinzhu ( wosmvp@gmail.com )</h1>
+    <h2 id="banner"></h2>
+    <h2 id="userAgent"></h2>
+
+    <ol id="tests"></ol>
+
+    <div id="main"></div>
+    <script type="text/javascript" charset="utf-8">
+      test("autolink test,single url",function(){
+          equals("http://www.google.com".autolink(),'<a href="http://www.google.com">http://www.google.com</a>',"test single and most common url: http://www.google.com")
+          equals("http://g.cn".autolink(),'<a href="http://g.cn">http://g.cn</a>',"test single and most common url: http://g.cn")
+          equals("http://www.wow-cool.cn".autolink(),'<a href="http://www.wow-cool.cn">http://www.wow-cool.cn</a>',"test single and most common url: http://www.wow-cool.cn")
+          equals("HTTP://G.CN".autolink(),'<a href="HTTP://G.CN">HTTP://G.CN</a>',"test single and most common url: HTTP://G.CN")
+
+          })
+
+      test("autolink test,gmail url https",function(){
+          equals("https://mail.google.com/mail/?zx=mxj4kmioctxh&shva=1#inbox/124997a61333f614".autolink(),'<a href="https://mail.google.com/mail/?zx=mxj4kmioctxh&shva=1#inbox/124997a61333f614">https://mail.google.com/mail/?zx=mxj4kmioctxh&shva=1#inbox/124997a61333f614</a>',"test single and most common url: gmail.com")
+          })
+
+      test("autolink test,url start with 'www.'",function(){
+          equals("www.google.com".autolink(),'<a href="www.google.com">www.google.com</a>',"test single and most common url: gmail.com")
+          })
+
+
+      test("autolink test,simple test",function(){
+          equals("http://www.google.com http://g.cn".autolink(),'<a href="http://www.google.com">http://www.google.com</a> <a href="http://g.cn">http://g.cn</a>')
+          equals("http://www.google.com'http://g.cn".autolink(),'<a href="http://www.google.com">http://www.google.com</a>\'<a href="http://g.cn">http://g.cn</a>')
+          })
+    </script>
+  </body>
+</html>
