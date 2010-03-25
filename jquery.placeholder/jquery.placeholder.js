@@ -9,7 +9,9 @@
     config = config || {};
 
     function holderContent(elem) {
-      return config.text || elem.attr('placeholder');
+      var holderText = config.text || elem.attr('placeholder');
+      elem.attr('placeholder', holderText)
+      return holderText;
     }
 
     function updatePlaceHolder(elem) {
@@ -24,6 +26,11 @@
       $(this).blur(function() {
         updatePlaceHolder($(this));
         if (config.blur instanceof Function) { config.blur.call(this) }
+      })
+
+      $(this).parents('form').submit(function() {
+        var elem = $(this).find("[placeholder]");
+        if (elem.val() === holderContent(elem)) { elem.val('') }
       })
 
       $(this).focus(function() {
